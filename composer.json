@@ -1,0 +1,35 @@
+{
+    "name":"leandroferreirama/getnet-php",
+    "description":"SDK php para integração com a API Getnet",
+    "minimum-stability":"stable",
+    "license":"MIT",
+    "type":"library",
+    "require":{
+        "php": ">=7.4"
+    },
+    "autoload":{
+        "psr-4":{
+            "Getnet\\":"src//Getnet"
+        }
+    },
+    "autoload-dev":{
+        "psr-4":{
+            "Tests\\": "tests"
+        }
+    },
+    "authors":[
+        {
+            "name":"Bruno Paz",
+            "email":"brunopaz@azpay.com.br"
+        },
+        {
+            "name":"Edson Nascimento",
+            "email":"edson27bn@gmail.com"
+        },
+        {
+            "name":"Leandro Ferreira",
+            "email":"suporte@integracaosistema.com.br"
+        }
+    ],
+    "homepage":"https://github.com/leandroferreirama/getnet-php"
+}
