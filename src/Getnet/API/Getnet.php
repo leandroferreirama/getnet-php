@@ -343,7 +343,7 @@ class Getnet
             }
 
             $request = new Request($this);
-            $response = $request->post($this, "/v1/payments/boleto", $transaction->toJSON());
+            $response = $request->post($this, "/v2/payments/boleto", $transaction->toJSON());
 
             $boletoresponse = new BoletoRespose();
             $boletoresponse->mapperJson($response);
