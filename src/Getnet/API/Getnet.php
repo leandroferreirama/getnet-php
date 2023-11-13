@@ -23,6 +23,8 @@ class Getnet
 
     private $keySession;
 
+    // private $
+
     // TODO add monolog
     private $debug = false;
 
