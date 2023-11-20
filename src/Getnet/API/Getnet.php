@@ -359,6 +359,32 @@ class Getnet
     }
 
     /**
+     *
+     * @param Transaction $transaction
+     * @return BoletoResposeV2
+     */
+    public function boletoV2(Transaction $transaction)
+    {
+        try {
+            if ($this->debug) {
+                print $transaction->toJSON();
+            }
+
+            $request = new Request($this);
+            $response = $request->post($this, "/v2/payments/boleto", $transaction->toJSON());
+var_dump($response);
+            $boletoresponse = new BoletoResposeV2();
+            $boletoresponse->mapperJson($response);
+            $boletoresponse->setBaseUrl($request->getBaseUrl());
+            $boletoresponse->generateLinks();
+
+            return $boletoresponse;
+        } catch (\Exception $e) {
+            return $this->generateErrorResponse($e);
+        }
+    }
+
+    /**
      * Payment confirmation is sent via notifications
      *
      * @param PixTransaction $pix

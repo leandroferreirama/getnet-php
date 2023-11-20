@@ -6,7 +6,7 @@ namespace Getnet\API;
  *
  * @package Getnet\API
  */
-class BoletoRespose extends BaseResponse
+class BoletoResposeV2 extends BaseResponse
 {
 
     public $boleto_id;
@@ -33,6 +33,12 @@ class BoletoRespose extends BaseResponse
 
     private $base_url;
 
+    public $cod_qrcode;
+
+    public $url_html;
+
+    public $url_pdf;
+
     /**
      *
      * @param mixed $base_url
@@ -47,8 +53,8 @@ class BoletoRespose extends BaseResponse
     public function generateLinks()
     {
         if ($this->getPaymentId()) {
-            $this->boleto_pdf = $this->base_url . "/v1/payments/boleto/" . $this->getPaymentId() . "/pdf";
-            $this->boleto_html = $this->base_url . "/v1/payments/boleto/" . $this->getPaymentId() . "/html";
+            $this->boleto_pdf = $this->base_url .  $this->url_pdf;
+            $this->boleto_html = $this->base_url . $this->url_html;
         }
     }
 

@@ -30,6 +30,8 @@ class Data implements \JsonSerializable
 
     private $boleto;
 
+    private $payment;
+
     
 
     /**
@@ -68,6 +70,38 @@ class Data implements \JsonSerializable
     public function setAmount($amount)
     {
         $this->amount = (int) (string) ($amount * 100);
+
+        return $this;
+    }
+
+    /**
+     *
+     * @return Payment
+     */
+    public function payment()
+    {
+        $payment = new Payment();
+        $this->setPayment($payment);
+
+        return $payment;
+    }
+
+    /**
+     *
+     * @return Payment
+     */
+    public function getPayment()
+    {
+        return $this->payment;
+    }
+
+    /**
+     *
+     * @param Payment $payment
+     */
+    public function setPayment(Payment $payment)
+    {
+        $this->payment = $payment;
 
         return $this;
     }

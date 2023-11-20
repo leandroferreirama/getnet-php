@@ -30,7 +30,7 @@ class Transaction implements \JsonSerializable
 
     private $amount;
 
-    private $currency = "BRL";
+    private $currency;
 
     private $order;
 
@@ -45,6 +45,52 @@ class Transaction implements \JsonSerializable
     private $debit;
 
     private $boleto;
+
+    private $idempotency_key;
+
+    private $request_id;
+
+    private $data;
+
+    /**
+     *
+     * @return mixed
+     */
+    public function getIdEmpotencyKey()
+    {
+        return $this->idempotency_key;
+    }
+
+    /**
+     *
+     * @param mixed $idempotency_key
+     */
+    public function setIdEmpotencyKey($idempotency_key)
+    {
+        $this->idempotency_key = (string) $idempotency_key;
+
+        return $this;
+    }
+
+    /**
+     *
+     * @return mixed
+     */
+    public function getRequestId()
+    {
+        return $this->request_id;
+    }
+
+    /**
+     *
+     * @param mixed $request_id
+     */
+    public function setRequestId($request_id)
+    {
+        $this->request_id = (string) $request_id;
+
+        return $this;
+    }
 
     /**
      *
@@ -102,6 +148,39 @@ class Transaction implements \JsonSerializable
     public function setCurrency($currency)
     {
         $this->currency = (string) $currency;
+
+        return $this;
+    }
+
+    /**
+     *
+     * @param string|null $order_id
+     * @return Data
+     */
+    public function data()
+    {
+        $data = new Data();
+        $this->setData($data);
+
+        return $data;
+    }
+
+    /**
+     *
+     * @return Data
+     */
+    public function getData()
+    {
+        return $this->data;
+    }
+
+    /**
+     *
+     * @param Data $data
+     */
+    public function setData(Data $data)
+    {
+        $this->data = $data;
 
         return $this;
     }
