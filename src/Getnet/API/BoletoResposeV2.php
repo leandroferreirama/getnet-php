@@ -76,6 +76,11 @@ class BoletoResposeV2 extends BaseResponse
         return $this->boleto_html;
     }
 
+    public function getPix()
+    {
+        return $this->cod_qrcode;
+    }
+
     /**
      *
      * @return mixed
