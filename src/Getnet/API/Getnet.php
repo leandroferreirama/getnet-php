@@ -372,7 +372,7 @@ class Getnet
 
             $request = new Request($this);
             $response = $request->post($this, "/v2/payments/boleto", $transaction->toJSON());
-var_dump($response);
+
             $boletoresponse = new BoletoResposeV2();
             $boletoresponse->mapperJson($response);
             $boletoresponse->setBaseUrl($request->getBaseUrl());
