@@ -14,8 +14,30 @@ require_once '../config/bootstrap.test.php';
 $getnet = getnetServiceTest();
 
 //Criar token Cartão
-$tokenCard = new Token("5155901222280001", "1533", $getnet);
-var_dump($tokenCard);
+$cardService = new \Getnet\API\Service\CardService($getnet);
+
+$card_number = '5155901222280001';
+$customer_id = 'customer_210818263';
+
+// Generate token
+$cardToken = $cardService->generateCardToken($card_number, $customer_id);
+
+$card = new Card($cardToken);
+$card->setBrand(Card::BRAND_MASTERCARD)
+    ->setExpirationMonth("12")
+    ->setExpirationYear(date('y') + 1)
+    ->setCustomerId($customer_id);
+
+// Save
+$tokenResponse = $cardService->saveCard($card);
+
+// Get by card_id
+$savedCard = $cardService->getCard($tokenResponse->getCardId());
+var_dump($savedCard);
+
+$tokenCard = new \Getnet\API\Entity\CardToken($savedCard->getNumberToken());
+
+
 $transaction = new Transaction();
 // Dados do pedido - Transação
 $transaction->setSellerId($seller_id);
@@ -35,7 +57,7 @@ $transaction->credit()
     ->setNumberInstallments(1)
     ->card($tokenCard)
     ->setExpirationMonth("12")
-    ->setExpirationYear("23")
+    ->setExpirationYear(date('y') + 1)
     ->setSecurityCode("123");
 # $transaction->credit()->setNumberInstallments(3);
 // Dados pessoais do comprador

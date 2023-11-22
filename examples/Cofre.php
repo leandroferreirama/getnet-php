@@ -24,7 +24,6 @@ $card->setBrand(Card::BRAND_MASTERCARD)
     ->setSecurityCode("123")
     ->setCustomerId($customer_id);
 
-
 // Save
 $tokenResponse = $cardService->saveCard($card);
 var_dump($tokenResponse->getCardId());
