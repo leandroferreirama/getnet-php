@@ -9,7 +9,7 @@ namespace Getnet\API;
 class PixResponse extends BaseResponse
 {
 
-    protected $payment_id;
+    public $payment_id;
     protected $transaction_id;
 
     protected $qr_code;
