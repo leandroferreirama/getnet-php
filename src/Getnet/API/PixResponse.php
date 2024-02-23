@@ -9,6 +9,7 @@ namespace Getnet\API;
 class PixResponse extends BaseResponse
 {
 
+    protected $payment_id;
     protected $transaction_id;
 
     protected $qr_code;
@@ -23,6 +24,11 @@ class PixResponse extends BaseResponse
     public function getTransactionId()
     {
         return $this->transaction_id;
+    }
+
+    public function getPaymentId()
+    {
+        return $this->payment_id;
     }
 
     public function setTransactionId($transaction_id)
